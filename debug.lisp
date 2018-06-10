@@ -27,6 +27,7 @@
 (in-package :cl-debug)
 
 (defvar *debug* nil)
+(declaim (type list *debug*))
 
 (defmacro debug-p (what)
   (labels ((walk (x)
@@ -38,8 +39,8 @@
 
 (defsetf debug-p (what) (value)
   `(progn (if ,value
-	      (pushnew ,what *debug*)
-	      (setq *debug* (remove ,what *debug*)))
+	      (pushnew (the symbol ,what) *debug*)
+	      (setq *debug* (remove (the symbol ,what) *debug*)))
 	  ,value))
 
 (debug-p (or (and :macros :xor) :lisp :lol))
