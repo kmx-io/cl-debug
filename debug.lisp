@@ -42,7 +42,3 @@
 	      (pushnew (the symbol ,what) *debug*)
 	      (setq *debug* (remove (the symbol ,what) *debug*)))
 	  ,value))
-
-(debug-p (or (and :macros :xor) :lisp :lol))
-
-(setf (debug-p :lol) nil)
